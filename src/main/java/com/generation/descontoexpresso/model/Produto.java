@@ -35,6 +35,9 @@ public class Produto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataValidade;
 
+    @NotNull(message = "O atributo fotoProduto é obrigatório.")
+    private String fotoProduto;
+
     @ManyToOne
     @JsonIgnoreProperties("produtos")
     private Categoria categoria;
@@ -89,6 +92,14 @@ public class Produto {
 
     public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
+    }
+
+    public String getFotoProduto() {
+        return fotoProduto;
+    }
+
+    public void setFotoProduto(String fotoProduto) {
+        this.fotoProduto = fotoProduto;
     }
 
     public Categoria getCategoria() {
