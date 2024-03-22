@@ -9,5 +9,5 @@ import com.generation.descontoexpresso.model.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 	
-	public List<Categoria> findByNomeContainingIgnoreCase(@Param("nome") String nome);
+	public List<Categoria> findByNomeCategoriaContainingIgnoreCase(@Param("nomeCategoria") String nomeCategoria);
 }

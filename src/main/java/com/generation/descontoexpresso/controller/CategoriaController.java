@@ -45,7 +45,7 @@ public class CategoriaController {
 	
 	@GetMapping("/categoria/{nome}")
 	public ResponseEntity<List<Categoria>> getByNome(@Valid @PathVariable(name = "nome") String nome) {
-		return ResponseEntity.ok(categoriaRepository.findByNomeContainingIgnoreCase(nome));
+		return ResponseEntity.ok(categoriaRepository.findByNomeCategoriaContainingIgnoreCase(nome));
 	}
 	
 	@PostMapping
@@ -56,9 +56,9 @@ public class CategoriaController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria newCategoria) {
-		Categoria putCategoria = categoriaRepository.save(newCategoria);
-		return categoriaRepository.findById(newCategoria.getId())
+	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria updateCategoria) {
+		Categoria putCategoria = categoriaRepository.save(updateCategoria);
+		return categoriaRepository.findById(updateCategoria.getId())
 				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
 					.body(putCategoria))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
