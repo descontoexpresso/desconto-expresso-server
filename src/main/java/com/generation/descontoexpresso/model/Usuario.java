@@ -1,6 +1,7 @@
 package com.generation.descontoexpresso.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_usuarios  ")
+@Table(name = "tb_usuarios")
 public class Usuario {
 
     @Id
@@ -59,6 +60,7 @@ public class Usuario {
     private String numeroCasa;
 
     @Schema(example = "email@email.com.br")
+    @Email(message = "Deve ser um email válido!")
     @NotNull(message = "O atributo email é obrigatório.")
     @Size(min = 5, max = 100, message = "O atributo emailUsuario deve conter no minimo 5 e no máximo 100 caracteres")
     private String emailUsuario;

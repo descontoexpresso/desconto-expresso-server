@@ -9,7 +9,7 @@ import com.generation.descontoexpresso.model.Categoria;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
-	
-	public List<Categoria> findByNomeCategoriaContainingIgnoreCase(@Param("nomeCategoria") String nomeCategoria);
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+
+    public List<Categoria> findByNomeCategoriaContainingIgnoreCase(@Param("nomeCategoria") String nomeCategoria);
 }
