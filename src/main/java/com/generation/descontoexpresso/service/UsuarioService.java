@@ -59,29 +59,21 @@ public class UsuarioService {
 
     public Optional<UsuarioLogin> autenticarUsuario(Optional<UsuarioLogin> usuarioLogin) {
 
-        // Gera o Objeto de autenticação
         var credenciais = new UsernamePasswordAuthenticationToken(usuarioLogin.get().getEmailUsuario(), usuarioLogin.get().getSenhaUsuario());
 
-        // Autentica o Usuario
         Authentication authentication = authenticationManager.authenticate(credenciais);
 
-        // Se a autenticação foi efetuada com sucesso
         if (authentication.isAuthenticated()) {
 
-            // Busca os dados do usuário
             Optional<Usuario> usuario = usuarioRepository.findByEmailUsuario(usuarioLogin.get().getEmailUsuario());
 
-            // Se o usuário foi encontrado
             if (usuario.isPresent()) {
-
-                // Preenche o Objeto usuarioLogin com os dados encontrados
                 usuarioLogin.get().setId(usuario.get().getId());
                 usuarioLogin.get().setNomeUsuario(usuario.get().getNomeUsuario());
                 usuarioLogin.get().setFotoUsuario(usuario.get().getFotoUsuario());
                 usuarioLogin.get().setToken(gerarToken(usuarioLogin.get().getEmailUsuario()));
                 usuarioLogin.get().setSenhaUsuario("");
 
-                // Retorna o Objeto preenchido
                 return usuarioLogin;
 
             }
