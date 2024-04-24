@@ -39,11 +39,11 @@ public class Produto {
     private String fotoProduto;
 
     @ManyToOne
-    @JsonIgnoreProperties("produtos")
+    @JsonIgnoreProperties("produto")
     private Categoria categoria;
 
     @ManyToOne
-    @JsonIgnoreProperties("usuario")
+    @JsonIgnoreProperties("produto")
     private Usuario usuario;
 
     public Long getId() {
