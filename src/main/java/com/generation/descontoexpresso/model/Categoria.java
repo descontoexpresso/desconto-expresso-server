@@ -16,7 +16,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "O atributo fotoCategoria é obrigatório.")
+    @NotNull(message = "O atributo de fotoCategoria é obrigatório.")
     private String fotoCategoria;
 
     @NotNull(message = "O atributo nomeCategoria é obrigatório.")
