@@ -1,4 +1,3 @@
-# Estágio de compilação
 FROM openjdk:17.0.1-jdk-oracle as build
 
 WORKDIR /workspace/app
@@ -8,13 +7,12 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN chmod +x ./mvnw  # Permissão de execução para mvnw
+RUN chmod -R 777 ./mvnw
 
 RUN ./mvnw install -DskipTests
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-# Estágio de execução
 FROM openjdk:17.0.1-jdk-oracle
 
 VOLUME /tmp
@@ -25,4 +23,4 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-ENTRYPOINT ["java", "-cp", "app:app/lib/*", "com.generation.descontoexpresso.DescontoexpressoApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.generation.descontoexpresso.DescontoexpressoApplication"]
