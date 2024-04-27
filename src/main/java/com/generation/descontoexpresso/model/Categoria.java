@@ -15,9 +15,10 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "O atributo fotoCategoria é obrigatório.")
-    @Size(min = 5, message = "O atributo nome deve conter no minimo 05 e deve ser um link")
+
+    @NotNull(message = "O atributo fotoProduto é obrigatório.")
     private String fotoCategoria;
+
     @NotNull(message = "O atributo nomeCategoria é obrigatório.")
     @Size(min = 5, max = 50, message = "O atributo nome deve conter no minimo 05 e no máximo 50 caracteres")
     private String nomeCategoria;
