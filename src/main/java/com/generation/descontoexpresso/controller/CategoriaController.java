@@ -3,6 +3,8 @@ package com.generation.descontoexpresso.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.generation.descontoexpresso.model.Produto;
+import com.generation.descontoexpresso.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,24 @@ public class CategoriaController {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+
+
+
+
+
+		@Autowired
+		private ProdutoRepository repositorioProduto;
+
+		@GetMapping("/{idCategoria}/produtos")
+		public ResponseEntity<List<Produto>> buscarProdutosPorCategoriaId(@PathVariable Long idCategoria) {
+			List<Produto> produtos = repositorioProduto.findByCategoriaId(idCategoria);
+			if (produtos.isEmpty()) {
+				return ResponseEntity.notFound().build(); // Nenhum produto encontrado
+			}
+			return ResponseEntity.ok(produtos);
+		}
+
+
 
 	@GetMapping
 	public ResponseEntity<List<Categoria>> getAll() {
