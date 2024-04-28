@@ -16,7 +16,6 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull(message = "O atributo fotoCategoria é obrigatório.")
-    @Size(min = 5, message = "O atributo nome deve conter no minimo 05 e deve ser um link")
     private String fotoCategoria;
     @NotNull(message = "O atributo nomeCategoria é obrigatório.")
     @Size(min = 5, max = 50, message = "O atributo nome deve conter no minimo 05 e no máximo 50 caracteres")
@@ -30,6 +29,7 @@ public class Categoria {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("categoria")
     private List<Produto> produto;
+
 
     public Long getId() {
         return id;
